@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For My Nokzi 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Georgia&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: radial-gradient(circle at top left, #ffdee9, #b5fffc);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Georgia, serif;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.9);
+      padding: 40px;
+      border-radius: 25px;
+      max-width: 600px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      background: linear-gradient(90deg, #ff4d6d, #ff85b3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 2.2em;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+    }
+
+    p {
+      font-size: 18px;
+      color: #444;
+      line-height: 1.7;
+      font-style: italic;
+      margin-bottom: 15px;
+    }
+
+    .countdown {
+      margin: 25px 0;
+      font-size: 22px;
+      font-weight: bold;
+      background: linear-gradient(90deg, #ff4d6d, #ffb6c1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+      animation: heartbeat 1.5s infinite;
+    }
+
+    @keyframes heartbeat {
+      0%,50%,100% { transform: scale(1); }
+      25%,75% { transform: scale(1.07); }
+    }
+
+    .quotes {
+      height: 60px;
+      margin-top: 20px;
+      overflow: hidden;
+      font-size: 17px;
+      color: #555;
+      opacity: 0;
+      transition: opacity 1s;
+    }
+
+    button {
+      margin-top: 25px;
+      padding: 12px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    #yes {
+      background: #ff4d6d;
+      color: white;
+    }
+
+    #yes:hover {
+      transform: scale(1.05);
+    }
+
+    #no {
+      background: #ddd;
+      position: absolute;
+    }
+
+    iframe {
+      position: fixed;
+      width: 0;
+      height: 0;
+      border: none;
+    }
+
+    .heart {
+      position: fixed;
+      font-size: 20px;
+      animation: floatUp linear forwards;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(0) scale(1); opacity: 1; }
+      to { transform: translateY(-100vh) scale(0.5); opacity: 0; }
+    }
+
+    .signature {
+      font-family: 'Dancing Script', cursive;
+      font-size: 22px;
+      color: #d6336c;
+      margin-top: 25px;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+    }
+
+    /* Background subtle glow animation */
+    body::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.2), transparent 70%);
+      animation: glow 8s infinite alternate;
+      z-index: 0;
+    }
+
+    @keyframes glow {
+      0% { transform: scale(1) rotate(0deg); }
+      100% { transform: scale(1.1) rotate(10deg); }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Background music -->
+  <iframe
+    src="https://www.youtube.com/embed/l6E16JAk_Fs?autoplay=1&loop=1&playlist=l6E16JAk_Fs&controls=0"
+    allow="autoplay">
+  </iframe>
+
+  <div class="card">
+    <h1>Nokzi, will you be my Valentine? 💕</h1>
+
+    <p>
+      Three years of choosing each other,<br>
+      even when the world placed miles in between.<br><br>
+      Love like ours doesn’t need touch to survive —<br>
+      it lives in patience, in faith,<br>
+      and in moments like this.
+    </p>
+
+    <div class="countdown" id="countdown">
+      Counting down to our FaceTime at 7:30 💖
+    </div>
+
+    <div class="quotes" id="quoteBox"></div>
+
+    <button id="yes" onclick="yesClick()">Yes, always 💖</button>
+    <button id="no">No</button>
+  </div>
+
+  <script>
+    // Playful "No" button
+    const noBtn = document.getElementById("no");
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    });
+
+    // Countdown
+    const countdownEl = document.getElementById("countdown");
+    const targetTime = new Date();
+    targetTime.setHours(19, 30, 0, 0);
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = targetTime - now;
+
+      if (diff <= 0) {
+        countdownEl.innerHTML = "It’s FaceTime time 📞💖";
+        return;
+      }
+
+      const h = Math.floor(diff / (1000 * 60 * 60));
+      const m = Math.floor((diff / (1000 * 60)) % 60);
+      const s = Math.floor((diff / 1000) % 60);
+
+      countdownEl.innerHTML = `FaceTime in ${h}h ${m}m ${s}s 💕`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Quote slider with fade
+    const quotes = [
+      "Distance means so little when someone means so much.",
+      "Every mile between us is proof of our love.",
+      "One day, this countdown ends in a hug.",
+      "I carry you with me, wherever I go.",
+      "Love like ours always finds its way."
+    ];
+
+    let quoteIndex = 0;
+    const quoteBox = document.getElementById("quoteBox");
+
+    function rotateQuotes() {
+      quoteBox.style.opacity = 0;
+      setTimeout(() => {
+        quoteBox.innerHTML = quotes[quoteIndex];
+        quoteBox.style.opacity = 1;
+        quoteIndex = (quoteIndex + 1) % quotes.length;
+      }, 500);
+    }
+
+    setInterval(rotateQuotes, 4000);
+    rotateQuotes();
+
+    // Floating hearts
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (15 + Math.random()*25) + "px";
+      heart.style.animationDuration = (3 + Math.random()*3) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 4000);
+    }
+
+    function yesClick() {
+      setInterval(createHeart, 300);
+
+      document.body.innerHTML += `
+        <div style="
+          position:fixed;
+          inset:0;
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          background:linear-gradient(135deg,#ffb6c1,#ffe4e1);
+          font-family:Georgia,serif;
+          text-align:center;
+          z-index:5;
+        ">
+          <div style="
+            background:white;
+            padding:40px;
+            border-radius:25px;
+            max-width:600px;
+            box-shadow:0 15px 40px rgba(0,0,0,0.2);
+          ">
+            <h1 style="background:linear-gradient(90deg,#ff4d6d,#ff85b3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:2em;text-shadow:2px 2px 8px rgba(0,0,0,0.1);">
+              Happy Valentine’s Day, Nokzi 💘
+            </h1>
+            <p style="font-size:18px;line-height:1.7;color:#444;">
+              Even across screens and miles,<br>
+              my heart has always known where it belongs.<br><br>
+              I love you — today, tonight at 7:30,<br>
+              and in every moment that follows.
+            </p>
+            <p class="signature">— Along</p>
+          </div>
+        </div>
+      `;
+    }
+  </script>
+
+</body>
+</html>
